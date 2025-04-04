@@ -1,8 +1,20 @@
-import { registerRootComponent } from 'expo';
+import { NavigationContainer } from '@react-navigation/native';
+import React from 'react';
+import { StatusBar } from 'react-native';
+import { ThemeProvider } from 'styled-components';
+import AppRoutes from './src/routes';
+import theme from './src/styles/theme';
 
-import App from './App';
-
-// registerRootComponent calls AppRegistry.registerComponent('main', () => App);
-// It also ensures that whether you load the app in Expo Go or in a native build,
-// the environment is set up appropriately
-registerRootComponent(App);
+export default function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <NavigationContainer>
+        <StatusBar
+          barStyle="light-content"
+          backgroundColor={theme.colors.primary}
+        />
+        <AppRoutes />
+      </NavigationContainer>
+    </ThemeProvider>
+  );
+}
